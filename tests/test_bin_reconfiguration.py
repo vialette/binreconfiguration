@@ -1,0 +1,1 @@
+"""Main test class for binreconfiguration"""

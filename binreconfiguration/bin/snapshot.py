@@ -2,9 +2,11 @@
 
 class Snapshot(object):
 
+  COUNT = "count"
+  SIZE  = "size"
+
   def __init__(self, count, size):
-    self._count = count
-    self._size  = size
+    self._dict([(COUNT, count), (SIZE, size)])
 
   def __str__(self):
     return "(count={}, size={})".format(self._count, self._size)
@@ -12,7 +14,10 @@ class Snapshot(object):
   __repr__ = __str__
 
   def count(self):
-    return self._count
+    return self._dict[COUNT]
 
   def size(self):
-    return self._size
+    return self._dict[SIZE]
+
+  def __getitem__(self, key):
+    return self._dict[key.lower()]

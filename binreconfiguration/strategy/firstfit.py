@@ -1,5 +1,4 @@
 from .strategy import Strategy
-from .overflowexception import OverflowException
 
 class FirstFit(Strategy):
 

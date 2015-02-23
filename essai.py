@@ -12,6 +12,11 @@ def items():
 		yield random.random()
 
 s = Simulator(5, 1)
+
 snapshots = s.run(BestLoadFit, items)
 for (index, snapshot) in enumerate(snapshots):
 	print("{} {}".format(index+1, snapshot))
+
+# snapshots = s.run(WorstLoadFit, items)
+# for (index, snapshot) in enumerate(snapshots):
+# 	print("{} {}".format(index+1, snapshot))

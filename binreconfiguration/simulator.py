@@ -15,7 +15,6 @@ class Simulator(object):
 		self._storage_unit.add_bins(self._bins)
 
 	def _setup_contrete_strategy(self):
-		print("_setup_contrete_strategy={}".format(self._strategy_factory.__name__))
 		self._strategy = self._strategy_factory(self._storage_unit)
 	
 	def _setup(self):

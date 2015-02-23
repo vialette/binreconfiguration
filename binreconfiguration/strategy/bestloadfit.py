@@ -1,8 +1,7 @@
 from .ascendingweightedstrategy import AscendingWeightedStrategy
+from .gauge import Load
 
 class BestLoadFit(AscendingWeightedStrategy):
 
-	# ascending sort bin according to load
 	def _weight(item):
-		return _load(item)
-
+		return Load(item)

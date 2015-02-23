@@ -20,7 +20,7 @@ class StorageUnit(object):
 		self._bins.remove(bin)
 
 	def __len__(self):
-		return self._nb_bins
+		return len(self._bins)
 
 	def count(self):
 		return sum(bin.count() for bin in self._bins)
@@ -31,14 +31,14 @@ class StorageUnit(object):
 	def __iter__(self):
 		return iter(self._bins)
 
-	def __getitem__(self, i):
-		return self._bins[i]
+	def __getitem__(self, bin_index):
+		return self._bins[bin_index]
 
 	def __str__(self):
 		return ",".join([str(bin) for bin in self._bins])
 
-	def add_item(self, index, item):
-		self._bins[index].add_item(item)
+	def add_item(self, bin_index, item):
+		self._bins[bin_index].add_item(item)
 
 	def snapshot(self):
 		return tuple(bin.snapshot() for bin in self._bins)

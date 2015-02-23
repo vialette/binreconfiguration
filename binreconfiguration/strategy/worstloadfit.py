@@ -1,9 +1,10 @@
 from .descendingweightedstrategy import DescendingWeightedStrategy
+from .gauge import Load
 
 class WorstLoadFit(DescendingWeightedStrategy):
 
-	# descending sort bin according to load
+	@staticmethod
 	def _weight(item):
-		return _load(item)
+		return Load(item)
 
 

@@ -1,13 +1,8 @@
-from .strategy import Strategy
+from .weightedstrategy  import WeightedStrategy
 from .overflowexception import OverflowException
 
-class AscendingWeightedStrategy(Strategy):
+class AscendingWeightedStrategy(WeightedStrategy):
 
-	def add_item(self, item):
-		indexed_items = sorted(enumerate(self._storage_unit), key = self._weight(item))
-		try:
-			index = next(index for (index, bin) in indexed_items if bin.free_space() >= item)
-			print("index = {}".format(index))
-			self._storage_unit.add_item(index, item)
-		except StopIteration:
-			raise OverflowException()
+	def __init__(self, storage_unit):
+		super(self.__class__, self).__init__(storage_unit)
+		self._reverse = False

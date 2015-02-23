@@ -1,14 +1,14 @@
 from .binexception import BinException
+from .snapshort import Snapshot
 
 class Bin(object):
 
 	def __init__(self, capacity, name = None):
 		self._items    = []
 		self._capacity = capacity
-		if name is None:
+		self._name = name
+		if self._name is None:
 			self._name = "Bin {}".format(id(self))
-		else:
-			self._name = name
 
 	def name(self):
 		return self._name
@@ -40,5 +40,5 @@ class Bin(object):
 						 "size={})".format(self.size())])
 
 	def snapshot(self):
-		return {"count": self.count(), "size": self.size()}
+		return Snapshot(self._count, self._size}
 

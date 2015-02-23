@@ -1,5 +1,5 @@
 import abc
-from .overflowexception import OverflowException
+from binreconfiguration.overflowexception import OverflowException
 
 class Strategy(metaclass = abc.ABCMeta):
 

@@ -5,6 +5,12 @@ from binreconfiguration.strategy    import FirstFit
 from binreconfiguration.strategy    import RandomFit
 from binreconfiguration.strategy    import BestLoadFit
 from binreconfiguration.strategy    import WorstLoadFit
+from binreconfiguration.strategy    import BestCountFit
+from binreconfiguration.strategy    import WorstCountFit
+from binreconfiguration.strategy    import BestFreeSpaceFit
+from binreconfiguration.strategy    import WorstFreSpaceFit
+from binreconfiguration.strategy    import BestAverageItemSizeFit
+from binreconfiguration.strategy    import WorstAverageItemSizeFit
 
 def items():
 	import random

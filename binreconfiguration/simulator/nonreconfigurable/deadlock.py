@@ -1,7 +1,8 @@
 from binreconfiguration.bin import Bin
 from binreconfiguration.storageunit import SnapshotedStorageUnit
+from binreconfiguration.overflowexception import OverflowException
 
-class Simulator(object):
+class Deadlock(object):
 
 	def __init__(self, number_of_bins, capacity):
 		self._number_of_bins = number_of_bins
@@ -28,5 +29,5 @@ class Simulator(object):
 		for item in items():
 			try:
 				self._strategy.add_item(item)
-			except Exception:
+			except OverflowException:
 				return  self._storage_unit.snapshots()

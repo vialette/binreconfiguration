@@ -1,10 +1,4 @@
-class BinException(Exception):
-  
-  def __init__(self, value):
-    self.value = value
-
-  def __str__(self):
-    return repr(self.value)
+from .binexception import BinException
 
 class Bin(object):
 
@@ -16,11 +10,11 @@ class Bin(object):
 		else:
 			self._name = name
 
-	def capacity(self):
-		return self._capacity
-
 	def name(self):
 		return self._name
+
+	def capacity(self):
+		return self._capacity
 
 	def count(self):
 		return len(self._items)
@@ -35,9 +29,6 @@ class Bin(object):
 		if item > self.free_space():
 			raise BinException("Bin overflow")
 		self._items.append(item)
-
-	def remove_item(self, item):
-		self._items.remove(item)
 
 	def __iter__(self):
 		return iter(self._items[:])

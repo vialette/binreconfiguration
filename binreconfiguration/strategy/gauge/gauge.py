@@ -6,5 +6,5 @@ class Gauge(metaclass = abc.ABCMeta):
 		self._item = item
 
 	@abc.abstractmethod
-	def __call__(self, bin):
+	def __call__(self, t):
 		pass

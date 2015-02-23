@@ -1,7 +1,6 @@
 import random
 
 from .strategy import Strategy
-from .overflowexception import OverflowException
 
 class RandomFit(Strategy):
 

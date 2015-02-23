@@ -1,5 +1,4 @@
 from .gaugedstrategy import GaugedStrategy
-from .overflowexception import OverflowException
 
 class DescendingGaugedStrategy(GaugedStrategy):
 

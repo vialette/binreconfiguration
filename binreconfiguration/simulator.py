@@ -29,4 +29,5 @@ class Simulator(object):
 			try:
 				self._strategy.add_item(item)
 			except Exception:
+				raise
 				return  self._storage_unit.snapshots()

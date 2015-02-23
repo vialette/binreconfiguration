@@ -3,5 +3,5 @@ from .gauge import Load
 
 class BestLoadFit(AscendingGaugedStrategy):
 
-	def _gauge(item):
+	def _gauge(self, item):
 		return Load(item)

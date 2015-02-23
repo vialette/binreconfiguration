@@ -1,7 +1,6 @@
 import abc
 
 from .strategy import Strategy
-from .overflowexception import OverflowException
 
 class GaugedStrategy(Strategy):
 
@@ -11,5 +10,5 @@ class GaugedStrategy(Strategy):
 		self._add_item(item, indexed_items)
 
 	@abc.abstractmethod
-	def _gauge(self):
+	def _gauge(self, item):
 		pass

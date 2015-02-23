@@ -1,4 +1,5 @@
 import abc
+from .overflowexception import OverflowException
 
 class Strategy(metaclass = abc.ABCMeta):
 

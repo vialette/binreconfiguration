@@ -9,9 +9,9 @@ from binreconfiguration.strategy    import WorstLoadFit
 def items():
 	import random
 	while True:
-		yield random.random()
+		yield random.random() / 10
 
-s = Simulator(5, 1)
+s = Simulator(2, 1)
 
 snapshots = s.run(BestLoadFit, items)
 for (index, snapshot) in enumerate(snapshots):

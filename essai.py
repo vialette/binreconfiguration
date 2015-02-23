@@ -1,6 +1,6 @@
 from binreconfiguration.bin import UnitBin
 from binreconfiguration.storageunit import SnapshotedStorageUnit
-from binreconfiguration.simulator.nonreconfigurable.deadlock import Deadlock
+from binreconfiguration.simulator.nonreconfigurable import Overflow
 from binreconfiguration.strategy import FirstFit
 from binreconfiguration.strategy import RandomFit
 from binreconfiguration.strategy import BestLoadFit
@@ -17,7 +17,7 @@ def items():
 	while True:
 		yield random.random() / 10
 
-s = Deadlock(2, 1)
+s = Overflow(2, 1)
 
 snapshots = s.run(BestLoadFit, items)
 for (index, snapshot) in enumerate(snapshots):

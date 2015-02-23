@@ -1,5 +1,5 @@
 from .binexception import BinException
-from .snapshort import Snapshot
+from .snapshot import Snapshot
 
 class Bin(object):
 

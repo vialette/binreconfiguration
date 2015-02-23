@@ -1,5 +1,6 @@
 from binreconfiguration.bin import Bin
-from binreconfiguration.storageunit import SnapshotedStorageUnit
+from binreconfiguration.storageunit import StorageUnit
+from binreconfiguration.snapshotcontroller import SnapshotController
 from binreconfiguration.overflowexception import OverflowException
 
 class Deadlock(object):
@@ -12,7 +13,7 @@ class Deadlock(object):
 		self._bins = [Bin(self._capacity) for _ in range(self._number_of_bins)]
 
 	def _setup_storage_unit(self):
-		self._storage_unit = SnapshotedStorageUnit()
+		self._storage_unit = StorageUnit(snapshot_controller = SnapshotController())
 		self._storage_unit.add_bins(self._bins)
 
 	def _setup_contrete_strategy(self):
@@ -30,4 +31,4 @@ class Deadlock(object):
 			try:
 				self._strategy.add_item(item)
 			except OverflowException:
-				return  self._storage_unit.snapshots()
+				return  self._storage_unit.snapshot_controller()

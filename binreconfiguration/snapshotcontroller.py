@@ -1,28 +1,27 @@
 class SnapshotController(object):
-  def __init__(self, storage_unit):
-    self._storage_unit = storage_unit
-    self._storage_unit_snapshots = []
+  def __init__(self):
+    self._snapshots    = []
 
   def storage_unit(self):
     return self._storage_unit
 
-  def append(self, storage_unit_snapshot):
-    self._storage_unit_snapshots.append(storage_unit_snapshot)
+  def append(self, snapshot):
+    self._snapshots.append(snapshot)
 
   def __getitem__(self, index):
-    return self._storage_unit_snapshots[index]
+    return self._snapshots[index]
 
   def __iter__(self):
-    return iter(self._storage_unit_snapshots)
+    return iter(self._snapshots)
 
   def __len__(self):
-    return len(self._storage_unit_snapshots)
+    return len(self._snapshots)
 
-  def projection(self, keys, title_column = True):
-    return [self._projection(storage_unit_snapshot, keys) for storage_unit_snapshot in self._storage_unit_snapshots]
+  def projection(self, keys):
+    return [self._projection(snapshot, keys) for snapshot in self._snapshots]
 
-  def _projection(self, storage_unit_snapshot, keys, title_column):
-    print("projection")
+  def _projection(self, snapshot, keys):
+    return dict([(key, snapshot[key]) for key in snapshot if key in keys])
 
 
 

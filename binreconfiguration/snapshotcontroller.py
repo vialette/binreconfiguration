@@ -22,5 +22,8 @@ class SnapshotController(object):
     return [self._projection(storage_unit_snapshot, keys) for storage_unit_snapshot in self._storage_unit_snapshots]
 
   def _projection(self, storage_unit_snapshot, keys, title_column):
-    pass
+    print("projection")
+
+
+
 

@@ -3,8 +3,15 @@
 class StorageUnit(object):
 
 	def __init__(self, name = None):
-		self._name = name
 		self._bins = []
+		if name is None:
+			self._name = "{} {}".format(self.__class__.__name__, id(self))
+		else:
+			self._name = name
+
+	def add_bins(self, bins):
+		for bin in bins:
+			self.add_bin(bin)
 
 	def add_bin(self, bin):
 		self._bins.append(bin)

@@ -8,10 +8,13 @@ class BinException(Exception):
 
 class Bin(object):
 
-	def __init__(self, capacity, name):
-		self._capacity = capacity
-		self._name     = name
+	def __init__(self, capacity, name = None):
 		self._items    = []
+		self._capacity = capacity
+		if name is None:
+			self._name = "Bin {}".format(id(self))
+		else:
+			self._name = name
 
 	def capacity(self):
 		return self._capacity
@@ -48,7 +51,3 @@ class Bin(object):
 	def snapshot(self):
 		return {"count": self.count(), "size": self.size()}
 
-class UnitBin(Bin):
-
-	def __init__(self, name = None):
-		super(UnitBin, self).__init__(1.0, name)

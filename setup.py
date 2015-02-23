@@ -6,7 +6,7 @@ import codecs
 import os
 import sys
 
-import sandman
+import binreconfiguration
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -19,7 +19,7 @@ def read(*filenames, **kwargs):
             buf.append(f.read())
     return sep.join(buf)
 
-long_description = read('README.txt', 'CHANGES.txt')
+long_description = read('README.rst', 'CHANGES.rst')
 
 class PyTest(TestCommand):
     def finalize_options(self):
@@ -39,16 +39,15 @@ setup(
     license              = 'The MIT License (MIT)',
     author               = 'Stephane Vialette',
     tests_require        = ['pytest'],
-    install_requires     = [,
-                            ],
+    install_requires     = [],
     cmdclass             = {'test': PyTest},
     author_email         = 'stephane.vialette@univ-mlv.fr',
     description          = 'Bin reconfiguration',
     long_description     = long_description,
-    packages             = ['ocsdaemon'],
+    packages             = ['binreconfiguration'],
     include_package_data = True,
     platforms            = 'any',
-    test_suite           = 'binreconfiguration.test.test_binreconfigurationn,
+    test_suite           = 'binreconfiguration.test.test_binreconfiguration',
     classifiers          = [
                             'Programming Language :: Python',
                             'Development Status :: 1 - Beta',

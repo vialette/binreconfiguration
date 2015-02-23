@@ -1,10 +1,9 @@
-from .descendingGaugedstrategy import DescendingGaugedStrategy
+from .descendinggaugedstrategy import DescendingGaugedStrategy
 from .gauge import Load
 
 class WorstLoadFit(DescendingGaugedStrategy):
 
-	@staticmethod
-	def _weight(item):
+	def _gauge(self, item):
 		return Load(item)
 
 

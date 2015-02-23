@@ -11,5 +11,5 @@ class GaugedStrategy(Strategy):
 		self._add_item(item, indexed_items)
 
 	@abc.abstractmethod
-	def _weight(self):
+	def _gauge(self):
 		pass

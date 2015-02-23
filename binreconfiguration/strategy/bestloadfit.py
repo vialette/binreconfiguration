@@ -1,7 +1,7 @@
-from .ascendingGaugedstrategy import AscendingGaugedStrategy
+from .ascendinggaugedstrategy import AscendingGaugedStrategy
 from .gauge import Load
 
 class BestLoadFit(AscendingGaugedStrategy):
 
-	def _weight(item):
+	def _gauge(item):
 		return Load(item)

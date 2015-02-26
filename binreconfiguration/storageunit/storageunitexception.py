@@ -1,0 +1,2 @@
+class StoragUnitException(Exception):
+	pass

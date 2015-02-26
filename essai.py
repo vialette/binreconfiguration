@@ -1,5 +1,5 @@
 from binreconfiguration.bin import UnitBin
-from binreconfiguration.storageunit import SnapshotedStorageUnit
+from binreconfiguration.storageunit import StorageUnit
 from binreconfiguration.simulator.nonreconfigurable import Overflow
 from binreconfiguration.strategy import FirstFit
 from binreconfiguration.strategy import RandomFit
@@ -19,9 +19,9 @@ def items():
 
 s = Overflow(2, 1)
 
-snapshots = s.run(BestLoadFit, items)
-for (index, snapshot) in enumerate(snapshots):
-	print("{} {}".format(index+1, snapshot))
+snapshot_controller = s.run(BestLoadFit, items)
+for (index, snapshot) in enumerate(snapshot_controller):
+	print("{} {}".format(index+1, str(snapshot)))
 
 # snapshots = s.run(WorstLoadFit, items)
 # for (index, snapshot) in enumerate(snapshots):

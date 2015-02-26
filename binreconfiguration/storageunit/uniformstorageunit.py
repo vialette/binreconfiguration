@@ -1,5 +1,5 @@
 from .snapshot import Snapshot
-from storageunitexception import StorageException
+from storageunitexception import StorageUnitException
 
 class UniformStorageUnit(StorageUnit):
 

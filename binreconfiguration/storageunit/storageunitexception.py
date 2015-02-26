@@ -1,2 +1,2 @@
-class StoragUnitException(Exception):
+class StorageUnitException(Exception):
 	pass

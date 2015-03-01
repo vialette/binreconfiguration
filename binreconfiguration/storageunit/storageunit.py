@@ -1,3 +1,5 @@
+"""Storage unit"""
+
 from .snapshot import Snapshot
 
 class StorageUnit(object):
@@ -33,7 +35,7 @@ class StorageUnit(object):
 	def add_item(self, bin_index, item):
 		self._bins[bin_index].add_item(item)
 		if self._snapshot_controller is not None:
-			self._snapshot_controller.append(self.snapshot())
+			self._snapshot_controller.add(self.snapshot())
 
 	def snapshot_controller(self):
 		return self._snapshot_controller

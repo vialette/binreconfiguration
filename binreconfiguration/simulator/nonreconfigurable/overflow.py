@@ -1,6 +1,8 @@
+"""Overflow simulator"""
+
 from binreconfiguration.bin import Bin
 from binreconfiguration.storageunit import UniformStorageUnit
-from binreconfiguration.snapshotcontroller import SnapshotController
+from binreconfiguration.storageunit import Snapshots
 from binreconfiguration.overflowexception import OverflowException
 
 class Overflow(object):
@@ -14,7 +16,7 @@ class Overflow(object):
 		bins = [Bin(self._capacity) for _ in range(self._number_of_bins)]
 
 		# 
-		storage_unit = UniformStorageUnit(bins = bins, snapshot_controller = SnapshotController())
+		storage_unit = UniformStorageUnit(bins = bins, snapshot_controller = Snapshots())
 
 		#
 		strategy = strategy_factory(storage_unit)

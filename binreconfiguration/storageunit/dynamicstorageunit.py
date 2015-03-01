@@ -1,6 +1,9 @@
+"""Dynamic storage unit"""
+
+from .storageunit import StorageUnit
 from .snapshot import Snapshot
 
-class DynamicStorageUnit(object):
+class DynamicStorageUnit(StorageUnit):
 
 	def add_bins(self, bins):
 		for bin in bins:

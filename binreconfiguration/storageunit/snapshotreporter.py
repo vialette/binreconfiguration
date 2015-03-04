@@ -19,7 +19,7 @@ class SnapshotReporter(object):
 				n = len(self._report[key]['values'])
 				self._report[key]['min'] = min(self._report[key]['values'])
 				self._report[key]['average'] = float(sum(self._report[key]['values'])) / float(n)
-				self._report[key]['min'] = max(self._report[key]['values'])
+				self._report[key]['max'] = max(self._report[key]['values'])
 
 		def __getitem__(self, key):
 			return self._report[key]
@@ -51,3 +51,15 @@ class SnapshotReporter(object):
 
 	def max(self, key):
 		return [row.max(key) for row in self._rows]
+
+	def last_values(self, key):
+		return self._rows[-1].values(key)
+
+	def last_min(self, key):
+		return self._rows[-1].min(key)
+
+	def last_average(self, key):
+		return self._rows[-1].average(key)
+
+	def last_max(self, key):
+		return self._rows[-1].max(key)

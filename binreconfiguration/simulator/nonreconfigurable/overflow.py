@@ -16,7 +16,7 @@ class Overflow(object):
 		bins = [Bin(self._capacity) for _ in range(self._number_of_bins)]
 
 		# 
-		storage_unit = UniformStorageUnit(bins = bins, snapshot_controller = Snapshots())
+		storage_unit = UniformStorageUnit(bins = bins, snapshots = Snapshots())
 
 		#
 		strategy = strategy_factory(storage_unit)
@@ -26,4 +26,4 @@ class Overflow(object):
 			try:
 				strategy.add_item(item)
 			except OverflowException:
-				return storage_unit.snapshot_controller()
+				return storage_unit.snapshots()

@@ -34,9 +34,11 @@ number_of_bins = 2
 capacity       = 1.
 simulator = Overflow(number_of_bins, capacity)
 
+repeater = Repeater(simulator)
+
 # run the simulator till overflow using the FirstFir strategy. 
 # The simulator gracefully intercepts the overflow exception.
-snapshots = simulator.run(FirstFit, generator)
+snapshots = repeater.run(FirstFit, generator, 2)
 
 # we are now ready to read/report/analyse the results of the simulation
 
@@ -145,5 +147,4 @@ print("max size = {}".format(snapshot_reporter.last_max('size')))
 print("max load = {}".format(snapshot_reporter.last_max('load')))
 print("max count = {}".format(snapshot_reporter.last_max('count')))
 print("\n")
-
 

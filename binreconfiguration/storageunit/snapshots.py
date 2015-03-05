@@ -9,7 +9,7 @@ class Snapshots(object):
     self._storage_unit_snapshots.append(storage_unit_snapshot)
 
   def add(self, snapshot):
-    self.append(snapshot)
+    self._storage_unit_snapshots.append(snapshot)
 
   def __getitem__(self, index):
     return self._storage_unit_snapshots[index]
@@ -19,6 +19,9 @@ class Snapshots(object):
 
   def __len__(self):
     return len(self._storage_unit_snapshots)
+
+  def last(self):
+    return self._storage_unit_snapshots[-1]
 
 
 

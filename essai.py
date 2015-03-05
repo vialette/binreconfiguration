@@ -1,5 +1,6 @@
 # a non-reconfigurable simulation that always goes to overflow
 from binreconfiguration.simulator.nonreconfigurable import Overflow
+from binreconfiguration.simulator.repeater import Repeater
 
 # the strategy we are going to use (FirstFit consider the bins always in the same
 # order and select the first with enough room to accomodate a given item)
@@ -19,20 +20,23 @@ from binreconfiguration.strategy import FirstFit
 # a SnapshortReport is a convenient objet for reporting the simulation
 from binreconfiguration.storageunit import SnapshotReporter
 
-# our item size generator
-def items():
-	import random
-	while True:
-		yield random.random()
+# Bin object
+from binreconfiguration.item import Item
+
+# Item generator
+from binreconfiguration.itemgenerator import Uniform
+
+# our item  generator
+generator = Uniform()
 
 # overflow simulator: 5 bins, each of unit size
-number_of_bins = 5
+number_of_bins = 2
 capacity       = 1.
 simulator = Overflow(number_of_bins, capacity)
 
 # run the simulator till overflow using the FirstFir strategy. 
 # The simulator gracefully intercepts the overflow exception.
-snapshots = simulator.run(FirstFit, items)
+snapshots = simulator.run(FirstFit, generator)
 
 # we are now ready to read/report/analyse the results of the simulation
 
@@ -141,3 +145,5 @@ print("max size = {}".format(snapshot_reporter.last_max('size')))
 print("max load = {}".format(snapshot_reporter.last_max('load')))
 print("max count = {}".format(snapshot_reporter.last_max('count')))
 print("\n")
+
+repeater = Repeater(simulator, FirstFit, generator, 2)

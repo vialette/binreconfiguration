@@ -52,6 +52,9 @@ class SnapshotReporter(object):
 	def max(self, key):
 		return [row.max(key) for row in self._rows]
 
+	def last(self):
+		return self._rows[-1]
+
 	def last_values(self, key):
 		return self._rows[-1].values(key)
 

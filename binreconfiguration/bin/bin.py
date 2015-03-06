@@ -44,6 +44,10 @@ class Bin(object):
 		"""
 		return float(self.size()) / float(self.capacity())
 
+	def is_empty(self):
+		"""Return *True* if this bin is empty."""
+		return self._items == []
+
 	def __dir__(self):
 		return ['capacity', 'count', 'size', 'free_space', 'load']
 
@@ -80,3 +84,8 @@ class Bin(object):
 	def snapshot(self):
 		"""Return a snapshot of this bin."""
 		return Snapshot(self)
+
+	def random_item(self):
+		if self._items == []:
+			return None
+		return random.choice(self._items)

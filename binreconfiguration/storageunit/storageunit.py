@@ -39,6 +39,33 @@ class StorageUnit(object):
 		"""
 		return iter(self._bins)
 
+	def items(self):
+		"""Iterate over the items of the bins."""
+		for bin in self._bins:
+			for item in bin:
+				yield item
+
+	def filter(self, predicate):
+		return [bin for bin in self._bin if predicate(bin)]
+
+	def non_empty_bins(self):
+		return self.filter(lambda bin: not bin.empty())
+
+	def bins_with_freespace(self, free_space):
+		return self.filter(lambda bin: bin.free_space() >= free_space)
+
+	def random_bin(self):
+		"""Return a bin choosed at random."""
+		return random.choice(self._bins)
+
+	def random_nonempty_bin(self):
+		"""Return a non-empty bin choosed at random."""
+		return random.choice(self.non_empty_bins())
+
+	def items(self):
+		"""Return the list of all items stored in this storage unit."""
+		return [item for bin in self._bins for item in bin]
+
 	def __getitem__(self, bin_index):
 		"""Access to bin *bin_index*.
 

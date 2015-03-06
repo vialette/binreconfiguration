@@ -1,3 +1,5 @@
+"""Item generator: integer uniform distribution"""
+
 from .itemgenerator import ItemGenerator
 import random
 

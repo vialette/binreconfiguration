@@ -1,3 +1,5 @@
+"""Simulator repeater"""
+
 class Repeater(object):
 
 	def __init__(self, simulator):

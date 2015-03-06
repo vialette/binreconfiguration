@@ -1,11 +1,12 @@
 """Overflow simulator"""
 
+from binreconfiguration.simulator import Simulator
 from binreconfiguration.bin import Bin
 from binreconfiguration.storageunit import UniformStorageUnit
 from binreconfiguration.storageunit import Snapshots
 from binreconfiguration.overflowexception import OverflowException
 
-class Overflow(object):
+class Overflow(Simulator):
 
 	def __init__(self, number_of_bins, capacity):
 		self._number_of_bins = number_of_bins

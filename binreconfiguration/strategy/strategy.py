@@ -1,3 +1,5 @@
+"""Strategy base class insertion"""
+
 import abc
 from binreconfiguration.overflowexception import OverflowException
 

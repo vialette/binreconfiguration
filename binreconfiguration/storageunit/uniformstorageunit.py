@@ -1,3 +1,5 @@
+"""Uniform storage unit"""
+
 from .snapshot import Snapshot
 from .storageunit import StorageUnit
 from .storageunitexception import StorageUnitException

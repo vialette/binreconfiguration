@@ -1,7 +1,9 @@
+"""Item generator base class"""
+
 import abc
 from binreconfiguration.item import Item
 
-class ItemGenerator(object):
+class ItemGenerator(metaclass = abc.ABCMeta):
 
 	def __init__(self, lower_bound, upper_bound):
 		self._lower_bound = lower_bound

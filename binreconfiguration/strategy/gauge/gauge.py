@@ -1,3 +1,5 @@
+"""Gauge base class"""
+
 import abc
 
 class Gauge(metaclass = abc.ABCMeta):

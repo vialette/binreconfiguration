@@ -25,15 +25,19 @@ class SnapshotReporter(object):
 			return self._report[key]
 
 		def values(self, key):
+			"""Return the data list."""
 			return self[key]['values']
 
 		def min(self, key):
+			"""Return the min data list."""
 			return self[key]['min']
 
 		def average(self, key):
+			"""Return the average data list."""
 			return self[key]['average']
 
 		def max(self, key):
+			"""Return the max data list."""
 			return self[key]['max']
 
 	def __init__(self, storage_unit_snapshots):
@@ -44,12 +48,15 @@ class SnapshotReporter(object):
 		return [row.values(key) for row in self._rows]
 
 	def min(self, key):
+		"""Return the min vector for key *key*."""
 		return [row.min(key) for row in self._rows]
 
 	def average(self, key):
+		"""Return the average vector for key *key*."""
 		return [row.average(key) for row in self._rows]
 
 	def max(self, key):
+		"""Return the max vector for key *key*."""
 		return [row.max(key) for row in self._rows]
 
 	def last(self):

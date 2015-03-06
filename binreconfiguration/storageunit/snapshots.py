@@ -32,6 +32,10 @@ class Snapshots(object):
     """Return the last storage unit snapshot."""
     return self._storage_unit_snapshots[-1]
 
+  def clean(self):
+    """Delete all storage unit snapshots."""
+    self._storage_unit_snapshots = []
+
 
 
 

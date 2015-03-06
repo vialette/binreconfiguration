@@ -8,7 +8,7 @@ class StorageUnit(object):
 		if bins is None:
 			self._bins = []
 		else:
-			self._bins = bins[:]
+			self._bins = [bin for bin in bins]
 		self._name = name
 		if self._name is None:
 			self._name = "{}-{}".format(self.__class__.__name__, id(self))
@@ -53,9 +53,15 @@ class StorageUnit(object):
 		return ",".join([str(bin) for bin in self._bins])
 
 	def add_item(self, bin_index, item):
+		"""Add an item to this storage unit."""
 		self._bins[bin_index].add_item(item)
 		if self._snapshots is not None:
 			self._snapshots.add(self.snapshot())
+
+	def clean_snapshots(self):
+		"""Remove all stored snapshots."""
+		if self._snapshots is not None:
+			self._snapshots.clean()
 
 	def snapshots(self):
 		"""Return the snapshots of this storage unit.

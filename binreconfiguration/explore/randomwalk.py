@@ -24,7 +24,10 @@ class RandomWalk(Explore):
 
 
 	def run(self, fun):
+		self._number_of_steps = 0
 		while not fun(self):
-			if not self.step():
+			if self.step():
+				self._number_of_steps += 1
+			else:
 				raise ExploreException()
 

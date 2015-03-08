@@ -1,0 +1,2 @@
+class MaxGradientDescent(GradientDescent):
+	pass

@@ -1,0 +1,2 @@
+class MinGradientDescent(GradientDescent):
+	pass

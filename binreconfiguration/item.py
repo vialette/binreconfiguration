@@ -39,12 +39,6 @@ class Item(object):
 		"""
 		return self._timestamp
 
-	def __float__(self):
-		return float(self._value)
-
-	def __add__(self, value):
-		return self._value + value
-		
 	def __add__(self, value):
 		return self._value + value
 
@@ -61,6 +55,12 @@ class Item(object):
 		return self._value / value
 
 	def __rdiv__(self, value):
+		return value / self._value
+
+	def __truediv__(self, value):
+		return self._value / value
+
+	def __rtruediv__(self, value):
 		return value / self._value
 
 	def __floordiv__(self, value):
@@ -80,9 +80,6 @@ class Item(object):
 
 	def __rpow__(self, value):
 		return pow(value, self._value)
-
-	def __cmp__(self, value):
-		return cmp(self._value, value)
 
 	def __eq__(self, value):
 		return self._value == value
@@ -107,3 +104,6 @@ class Item(object):
 
 	def __int__(self):
 		return int(self._value)
+
+	def __float__(self):
+		return float(self._value)

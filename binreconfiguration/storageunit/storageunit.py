@@ -34,7 +34,7 @@ class StorageUnit(object):
 		return sum(bin.size() for bin in self._bins)
 
 	def __iter__(self):
-		"""Iterator over the bins.
+		"""Iteratate over the bins.
 
 		"""
 		return iter(self._bins)
@@ -46,12 +46,15 @@ class StorageUnit(object):
 				yield item
 
 	def filter(self, predicate):
+		"""Filter the list of bins."""
 		return [bin for bin in self._bin if predicate(bin)]
 
 	def non_empty_bins(self):
+		"""Return the list of all non-empty bins."""
 		return self.filter(lambda bin: not bin.empty())
 
-	def bins_with_freespace(self, free_space):
+	def bins_with_freespace(self, freespace):
+		"""Return the list of bins with at least *freespace* free space."""
 		return self.filter(lambda bin: bin.free_space() >= free_space)
 
 	def random_bin(self):

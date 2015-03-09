@@ -15,7 +15,7 @@ class Snapshot(object):
     return '(' + ','.join([str(bin_snapshot) for bin_snapshot in self]) + ')'
 
   def __getitem__(self, i):
-    """Access """
+    """Access the snapshot of a given bin index."""
     return self._bin_snapshots[i]
 
   def __iter__(self):

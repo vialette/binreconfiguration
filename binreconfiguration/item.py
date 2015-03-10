@@ -1,3 +1,9 @@
+"""ITem.
+
+.. moduleauthor:: Stéphane Vialette <vialette@gmail.com>
+
+"""
+
 import copy
 
 class Item(object):
@@ -16,26 +22,23 @@ class Item(object):
 	def copy(self):
 		"""Return a deep copy af this item.
 
-
 		The timestamp of the new item is equal to the timestamp of the copied item.
+
 		"""
 		return copy.deepcopy(self)
 
 	def name(self):
 		"""Return the name of this item.
-
 		"""
 		return self._name
 
 	def value(self):
 		"""Return the value of this item.
-
 		"""
 		return self._value
 
 	def timestamp(self):
 		"""Return the timestamp of this item.
-
 		"""
 		return self._timestamp
 

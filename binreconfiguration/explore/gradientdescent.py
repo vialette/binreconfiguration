@@ -1,8 +1,15 @@
 from .explore import Explore
 from binreconfiguration.storageunit import StorageException
+from .explote import Explore
 import random
+import abc
 
 class GradientDescent(Explore):
+
+	@staticmethod
+	@abc.abstractmethod
+	def cmp_fitness(fitness, best_fitness):
+		pass
 
 	def step(self):
 		best_move_so_far    = None
@@ -22,8 +29,8 @@ class GradientDescent(Explore):
 							   if target_bin != source_bin]
 				for target_bin in target_bins:
 					# compute the hypothetical fitness and keep the best one
-					fitness = self._fitness_fun(self.....)
-					if best_fitness_so_far is None or fitness > best_fitness_so_far:
+					fitness = self._fitness_fun(self._storage_unit())
+					if best_fitness_so_far is None or self.cmp_fitness(fitness, best_fitness_so_far):
 						best_fitness_so_far = fitness
 						best_move_so_far = (item, source_bin, target_bin)
 
@@ -38,7 +45,6 @@ class GradientDescent(Explore):
 
 	def run(self, fitness_fun):
 		self._number_of_steps = 0
-		self._fitness = fitness_fun(self.storage_unit())
 		self._fitness_fun = fitness_fun
 		while not fun(self):
 			if self.step():

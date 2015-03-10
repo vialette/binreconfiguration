@@ -20,6 +20,7 @@ class RandomWalk(Explore):
 					self._storage_unit.move(item, source_bin, target_bin)
 					return True
 
+		# still there !? no move is possible
 		return False
 
 

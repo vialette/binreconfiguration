@@ -11,3 +11,7 @@ class Explore(metaclass = abc.ABCMeta):
 
 	def number_of_steps(self):
 		return self._number_of_steps
+
+	@abc.abstractmethod
+	def run(fitness_fun):
+		pass

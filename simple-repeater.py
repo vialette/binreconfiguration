@@ -30,15 +30,15 @@ from binreconfiguration.itemgenerator import Uniform
 generator = Uniform()
 
 # overflow simulator: 5 bins, each of unit size
-number_of_bins = 2
-capacity       = 1.
+number_of_bins = 5
+capacity       = 10.
 simulator = Overflow(number_of_bins, capacity)
 
 repeater = Repeater(simulator)
 
 # run the simulator till overflow using the FirstFir strategy. 
 # The simulator gracefully intercepts the overflow exception.
-snapshots = repeater.run(FirstFit, generator, 2)
+snapshots = repeater.run(FirstFit, generator, 10)
 
 # we are now ready to read/report/analyse the results of the simulation
 

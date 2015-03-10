@@ -15,3 +15,6 @@ class Snapshot(object):
 
   def __iter__(self):
     return iter(self._dict)
+
+  def bin_name(self):
+    return self._dict['name']

@@ -1,4 +1,8 @@
-"""Bin"""
+"""Bin
+
+.. moduleauthor:: Stéphane Vialette <vialette@gmail.com>
+
+"""
 
 from .binexception import BinException
 from .snapshot import Snapshot
@@ -13,19 +17,23 @@ class Bin(object):
 			self._name = "Bin-{}".format(id(self))
 
 	def name(self):
-		"""Return the name of this bin."""
+		"""Return the name of this bin.
+		"""
 		return self._name
 
 	def capacity(self):
-		"""Return the capacity of this bin."""
+		"""Return the capacity of this bin.
+		"""
 		return self._capacity
 
 	def count(self):
-		"""Return the number of items in this bin."""
+		"""Return the number of items in this bin.
+		"""
 		return len(self._items)
 
 	def size(self):
-		"""Return the total size of the items in this bin."""
+		"""Return the total size of the items in this bin.
+		"""
 		return sum(item for item in self._items)
 
 	def free_space(self):
@@ -39,13 +47,14 @@ class Bin(object):
 	def load(self):
 		"""Return the load of this bin.
 
-		The *load* of a bin is defined to be the ratio between the total size of the
+		The load of a bin is defined to be the ratio between the total size of the
 		items in this bin and the capacity of this bin.
 		"""
 		return float(self.size()) / float(self.capacity())
 
 	def is_empty(self):
-		"""Return *True* if this bin is empty."""
+		"""Return True if this bin contains no item.
+		"""
 		return self._items == []
 
 	def __dir__(self):
@@ -63,6 +72,9 @@ class Bin(object):
 	def add_item(self, item):
 		"""Add an item to this bin.
 
+	    :param item: The item to be added to this bin.
+	    :type item: Item.
+	    :raises: BinException
 
 		"""
 		if item > self.free_space():
@@ -71,21 +83,23 @@ class Bin(object):
 
 	def __iter__(self):
 		"""Iterate over the items in this bin.
-
 		"""
 		return iter(self._items)
 
 	def __str__(self):
 		"""Stringigy this bin.
-
 		"""
 		return str(self.snapshot())
 
 	def snapshot(self):
-		"""Return a snapshot of this bin."""
+		"""Return a snapshot of this bin.
+		"""
 		return Snapshot(self)
 
 	def random_item(self):
-		if self._items == []:
-			return None
+		"""Return a item choosed at random in this bin.
+
+	    :raises: IndexError
+	    
+		"""
 		return random.choice(self._items)

@@ -87,3 +87,9 @@ class TestBin_InsertMany(object):
 
 	def test_isempty(self):
 		assert not self.bin.is_empty()
+
+class TestBin_Snapshot(self):
+	def setup(self):
+		self.capacity = 10
+		self.bin      = Bin(self.capacity)
+		self.items    = [Item(i) for i in range(1,5)]

@@ -5,22 +5,38 @@
 """
 
 from .snapshot import Snapshot
+from .storageunitexception import StorageUnitException
 import pickle
 
 class StorageUnit(object):
-	"""Stogae unit.
+	"""Storage unit.
 
 	"""
 
-	def __init__(self, bins = None, snapshots = None, name = None):
+	def __init__(self, bins = None, snapshots = None, name = None, regular = True, dynamic = False):
+		# regular
+		self._regular = regular
+		if self._regular and bins != []:
+			capacities = [bin.capacity() for bin in bins]
+			if capacities.count(capacities[0]) != len(capacities):
+				raise StorageUnitException("distinct bin capacities in regular storage unit")
+
+		# dynamic
+		self.dynamic = dynamic
+
+		# bins
 		if bins is None:
 			self._bins = []
 		else:
 			self._bins = [bin for bin in bins]
+
+		# name
 		self._name = name
 		if self._name is None:
 			self._name = "{}-{}".format(self.__class__.__name__, id(self))
-		self._snapshots = snapshots
+
+		# snapshot controller
+		self._snapshot_controller = snapshots
 
 	def __len__(self):
 		"""Return the number of bins in this storage unit.
@@ -38,7 +54,7 @@ class StorageUnit(object):
 		return sum(bin.size() for bin in self._bins)
 
 	def __iter__(self):
-		"""Iteratate over the bins of this storage unit.
+		"""Iterate over the bins of this storage unit.
 		"""
 		return iter(self._bins)
 
@@ -115,24 +131,67 @@ class StorageUnit(object):
 
 		"""
 		self._bins[bin_index].add_item(item)
-		if self._snapshots is not None:
-			self._snapshots.add(self.snapshot())
+		if self._snapshot_controller is not None:
+			self._snapshot_controller.add(self.snapshot())
 
-	def clean_snapshots(self):
+	def clean_snapshot_controller(self):
 		"""Remove all stored snapshots of this stroage unit.
 		"""
-		if self._snapshots is not None:
-			self._snapshots.clean()
+		if self._snapshot_controller is not None:
+			self._snapshot_controller.clean()
 
 	def snapshots(self):
 		"""Return the list of all snapshots of this storage unit.
 		"""
-		return self._snapshots
+		return self._snapshot_controller
 
 	def snapshot(self):
-		"""Return the snapshot of this storage unt.
+		"""Return the snapshot of this storage unit.
 		"""
 		return Snapshot(self)
+
+	def dynamic(self):
+		"""Return True if this storage unit is dynamic, and False otherwise.
+		"""
+		return self._dynamic
+
+	def set_dynamic(self):
+		"""Make this storage unit dynamic.
+		"""
+		self._dynamic = True
+
+	def set_non_dynamic(self):
+		"""Make this storage unit non-dynamic.
+		"""
+		self._dynamic = False
+
+	def add_bin(self, bin):
+		"""Add one bin to this this storage unit.
+
+
+		"""
+		# only dynamic storage unit can gain a new bin
+		if not self._dynamic:
+			raise StorageUnitException("adding bin to an non-dynamic storage unit")
+		self._bins.append(bin)
+
+		# let the snapshot storage unit controller knows about this new bin
+		if self._snapshot_controller is not None:
+			self._snapshot_controller.add(self.snapshot())
+
+	def remove_bin(self, bin):
+		"""Remove one bin from this storage unit.
+
+
+		"""
+		# only dynamic storage unit can loose a bin
+		if not self._dynamic:
+			raise StorageUnitException("removing bin from an non-dynamic storage unit")
+		self._bins.remove(bin)
+
+		# let the snapshot storage unit controller knows about this lost bin
+		if self._snapshot_controller is not None:
+			self._snapshot_controller.add(self.snapshot())
 
 	def dump(self, filename):
 		"""Dump this storage unit.

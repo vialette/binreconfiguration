@@ -1,4 +1,6 @@
-"""Storage unit exception"""
+"""Storage unit exception
+
+"""
 
 class StorageUnitException(Exception):
 	pass

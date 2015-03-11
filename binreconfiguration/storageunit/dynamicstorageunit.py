@@ -1,4 +1,6 @@
-"""Dynamic storage unit"""
+"""Dynamic storage unit
+
+"""
 
 from .storageunit import StorageUnit
 from .snapshot import Snapshot

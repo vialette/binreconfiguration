@@ -72,14 +72,21 @@ class StorageUnit(object):
 	    :type predicate: function.
 
 		"""
-		return [bin for bin in self._bin if predicate(bin)]
+		for bin in self.bins:
+			if predicate(bin):
+				yield bin
 
 	def non_empty_bins(self):
-		"""Return the list of all non-empty bins.
+		"""Return the non-empty bins of this storage unit.
 		"""
 		return self.filter(lambda bin: not bin.empty())
 
-	def bins_with_free_space(self, free_space):
+	def empty_bins(self):
+		"""Return the empty bins of this storage unit.
+		"""
+		return self.filter(lambda bin: bin.empty())
+
+	def large_enough_bins(self, free_space):
 		"""Return the list of bins with large enough free space.
 
 	    :param free_space: The needed free space.

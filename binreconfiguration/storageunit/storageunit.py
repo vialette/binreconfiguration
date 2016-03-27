@@ -1,4 +1,4 @@
-"""Storage unit.
+"""Storage unit module.
 
 .. moduleauthor:: Stéphane Vialette <vialette@gmail.com>
 
@@ -50,11 +50,13 @@ class StorageUnit(object):
 
 	def size(self):
 		"""Return the total size of the items stored in the bins of this storage unit.
+		
 		"""
 		return sum(bin.size() for bin in self._bins)
 
 	def __iter__(self):
 		"""Iterate over the bins of this storage unit.
+
 		"""
 		return iter(self._bins)
 
@@ -72,9 +74,7 @@ class StorageUnit(object):
 	    :type predicate: function.
 
 		"""
-		for bin in self.bins:
-			if predicate(bin):
-				yield bin
+		return (bin for bin in self.bins if predicate(bin))
 
 	def non_empty_bins(self):
 		"""Return the non-empty bins of this storage unit.
@@ -177,7 +177,7 @@ class StorageUnit(object):
 
 
 		"""
-		# only dynamic storage unit can gain a new bin
+		# only dynamic storage units can gain a new bin
 		if not self._dynamic:
 			raise StorageUnitException("adding bin to an non-dynamic storage unit")
 		self._bins.append(bin)
@@ -191,7 +191,7 @@ class StorageUnit(object):
 
 
 		"""
-		# only dynamic storage unit can loose a bin
+		# only dynamic storage units can loose a bin
 		if not self._dynamic:
 			raise StorageUnitException("removing bin from an non-dynamic storage unit")
 		self._bins.remove(bin)
@@ -221,4 +221,4 @@ class StorageUnit(object):
 		storage_unit = None
 		with open(filename, 'wb') as f:
 			storage_unit = pickle.load(f)
-		return storage_unit		
+		return storage_unit

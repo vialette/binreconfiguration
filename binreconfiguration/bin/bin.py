@@ -12,27 +12,31 @@ class Bin(object):
 	def __init__(self, capacity, name = None):
 		self._items    = []
 		self._capacity = capacity
-		self._name = name
+		self._name     = name
 		if self._name is None:
 			self._name = "Bin-{}".format(id(self))
 
 	def name(self):
 		"""Return the name of this bin.
+
 		"""
 		return self._name
 
 	def capacity(self):
 		"""Return the capacity of this bin.
+
 		"""
 		return self._capacity
 
 	def count(self):
 		"""Return the number of items in this bin.
+
 		"""
 		return len(self._items)
 
 	def size(self):
 		"""Return the total size of the items in this bin.
+
 		"""
 		return sum(item for item in self._items)
 
@@ -54,6 +58,7 @@ class Bin(object):
 
 	def is_empty(self):
 		"""Return True if this bin contains no item.
+
 		"""
 		return self._items == []
 
@@ -83,6 +88,7 @@ class Bin(object):
 
 	def __iter__(self):
 		"""Iterate over the items in this bin.
+		
 		"""
 		return iter(self._items)
 
@@ -100,6 +106,6 @@ class Bin(object):
 		"""Return a item choosed at random in this bin.
 
 	    :raises: IndexError
-	    
+
 		"""
 		return random.choice(self._items)
